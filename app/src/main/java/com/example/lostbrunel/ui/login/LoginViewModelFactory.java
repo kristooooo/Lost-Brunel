@@ -1,8 +1,8 @@
 package com.example.lostbrunel.ui.login;
 
-import android.arch.lifecycle.ViewModel;
-import android.arch.lifecycle.ViewModelProvider;
-import android.support.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.annotation.NonNull;
 
 import com.example.lostbrunel.data.LoginDataSource;
 import com.example.lostbrunel.data.LoginRepository;

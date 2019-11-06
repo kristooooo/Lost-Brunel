@@ -15,7 +15,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -39,8 +39,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Brunel University London and move the camera
-        LatLng Brunel = new LatLng(-34, 151);
+        LatLng Brunel = new LatLng(51.5324, -0.4730);
         mMap.addMarker(new MarkerOptions().position(Brunel).title("Brunel University"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(Brunel));
+        float zoomLevel = (float) 16.0; //This goes up to 21
+       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Brunel, zoomLevel));
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Brunel, zoomLevel));
     }
 }

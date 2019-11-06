@@ -1,5 +1,7 @@
 package com.example.lostbrunel.ui.login;
 
+import com.example.lostbrunel.MapsActivity;
+
 /**
  * Class exposing authenticated user details to the UI.
  */
@@ -10,6 +12,7 @@ class LoggedInUserView {
     LoggedInUserView(String displayName) {
         this.displayName = displayName;
     }
+  //for another session here is where home page needs to be displayed
 
     String getDisplayName() {
         return displayName;

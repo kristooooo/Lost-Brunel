@@ -1,7 +1,5 @@
 package com.example.lostbrunel.ui.login;
 
-import com.example.lostbrunel.MapsActivity;
-
 /**
  * Class exposing authenticated user details to the UI.
  */

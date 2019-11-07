@@ -1,28 +1,50 @@
 package com.example.lostbrunel;
 
-import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlaceAutocompleteFragment;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        PlaceAutocompleteFragment placeAutoComplete;
+
+        placeAutoComplete = (PlaceAutocompleteFragment) getFragmentManager().findFragmentById(R.id.place_autocomplete);
+        placeAutoComplete.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+            public void onPlaceSelected(Place place) {
+
+                Log.d("Maps", "Place selected: " + place.getName());
+            }
+
+            @Override
+            public void onError(Status status) {
+                Log.d("Maps", "An error occurred: " + status);
+            }
+        });
+
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
+
 
 
     /**
@@ -42,7 +64,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng Brunel = new LatLng(51.5324, -0.4730);
         mMap.addMarker(new MarkerOptions().position(Brunel).title("Brunel University"));
         float zoomLevel = (float) 16.0; //This goes up to 21
-       // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Brunel, zoomLevel));
+        // mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Brunel, zoomLevel));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(Brunel, zoomLevel));
     }
+
 }
